@@ -1,0 +1,36 @@
+[
+    {
+        "name": "Monday",
+        "abr": "mon"
+
+    },
+    {
+        "name": "Tuesday",
+        "abr": "tue"
+
+    },
+    {
+        "name": "Wednesday",
+        "abr": "wed"
+
+    },
+    {
+        "name": "Thursday",
+        "abr": "thu"
+
+    },
+    {
+        "name": "Friday",
+        "abr": "fri"
+
+    },
+    {
+        "name": "Saturday",
+        "abr": "sat"
+
+    },
+    {
+        "name": "Sunday",
+        "abr": "sun"
+    }
+]

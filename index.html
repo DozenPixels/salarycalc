@@ -1,0 +1,231 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Salary Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <!-- Include Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href='styles/main.css' rel='stylesheet' type="text/css">
+
+</head>
+
+<!-- Angular App called on entire body tag for simplicity -->
+
+<body ng-app="salaryCalc">
+
+    <div ng-controller="salaryCtrl">
+
+        <div class="container-fluid" style="padding-top: 70px;">
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1>Time Sheet</h1>
+                </div>
+            </div>
+
+            <table class="table table-bordered text-center" id="time-sheet">
+                <tr class="info">
+                    <th colspan="4" class="text-center">
+                        <h5>Weekdays</h5>
+                    </th>
+                </tr>
+                <tr class="table-background">
+                    <td></td>
+                    <td><strong>Start</strong></td>
+                    <td><strong>End</strong></td>
+                    <td><strong>Total</strong></td>
+                </tr>
+
+                <!--
+                <tr ng-repeat="day in days">
+                    <td ng-class="{'done': difference(start.day.abr,end.day.abr) !== '00:00'}">{{day.name}}</td>
+                    <td>
+                        <input type="time" class="text-center" ng-model="start.day.abr">
+                    </td>
+                    <td>
+                        <input type="time" class="text-center" ng-model="end.day.abr">
+                    </td>
+                    <td ng-class="{'done': difference(start.day.abr,end.day.abr) !== '00:00'}">
+                        {{difference(start.day.abr,end.day.abr)}}
+                    </td>
+                </tr>
+-->
+
+
+                <tr class="text-center">
+                    <td ng-class="{'done': mon.total !== '00:00'}">Monday</td>
+                    <td>
+                        <input type="time" class="text-center" ng-model="mon.start">
+                    </td>
+                    <td>
+                        <input type="time" class="text-center" ng-model="mon.end">
+                    </td>
+                    <td ng-class="{'done': mon.total !== '00:00'}">
+                        {{mon.total=difference(mon.start,mon.end);""}} {{mon.total}}
+                        <span ng-hide="mon.total === '00:00'" class="checkmark"><i class="fa fa-check" aria-hidden="true"></i></span>
+                    </td>
+                </tr>
+                <tr class="text-center">
+                    <td ng-class="{'done': tue.total !== '00:00'}">Tuesday</td>
+                    <td>
+                        <input type="time" class="text-center" ng-model="tue.start">
+                    </td>
+                    <td>
+                        <input type="time" class="text-center" ng-model="tue.end">
+                    </td>
+                    <td ng-class="{'done': tue.total !== '00:00'}">
+                        {{tue.total=difference(tue.start,tue.end);""}} {{tue.total}}
+                        <span ng-hide="tue.total === '00:00'" class="checkmark"><i class="fa fa-check" aria-hidden="true"></i></span>
+                    </td>
+                </tr>
+                <tr class="text-center">
+                    <td ng-class="{'done': wed.total !== '00:00'}">Wednesday</td>
+                    <td>
+                        <input type="time" class="text-center" ng-model="wed.start">
+                    </td>
+                    <td>
+                        <input type="time" class="text-center" ng-model="wed.end">
+                    </td>
+                    <td ng-class="{'done': wed.total !== '00:00'}">
+                        {{wed.total=difference(wed.start,wed.end);""}} {{wed.total}}
+                        <span ng-hide="wed.total === '00:00'" class="checkmark"><i class="fa fa-check" aria-hidden="true"></i></span>
+                    </td>
+                </tr>
+                <tr class="text-center">
+                    <td ng-class="{'done': thu.total !== '00:00'}">Thursday</td>
+                    <td>
+                        <input type="time" class="text-center" ng-model="thu.start">
+                    </td>
+                    <td>
+                        <input type="time" class="text-center" ng-model="thu.end">
+                    </td>
+                    <td ng-class="{'done': thu.total !== '00:00'}">
+                        {{thu.total=difference(thu.start,thu.end);""}} {{thu.total}}
+                        <span ng-hide="thu.total === '00:00'" class="checkmark"><i class="fa fa-check" aria-hidden="true"></i></span>
+                    </td>
+                </tr>
+                <tr class="text-center">
+                    <td ng-class="{'done': fri.total !== '00:00'}">Friday</td>
+                    <td>
+                        <input type="time" class="text-center" ng-model="fri.start">
+                    </td>
+                    <td>
+                        <input type="time" class="text-center" ng-model="fri.end">
+                    </td>
+                    <td ng-class="{'done': fri.total !== '00:00'}">
+                        {{fri.total=difference(fri.start,fri.end);""}} {{fri.total}}
+                        <span ng-hide="fri.total === '00:00'" class="checkmark"><i class="fa fa-check" aria-hidden="true"></i></span>
+                    </td>
+                </tr>
+
+                <tr class="info">
+                    <th colspan="4" class="text-center">
+                        <h5>Weekends</h5></th>
+                </tr>
+
+                <tr class="text-center">
+                    <td ng-class="{'done': sat.total !== '00:00'}">Saturday</td>
+                    <td>
+                        <input type="time" class="text-center" ng-model="sat.start">
+                    </td>
+                    <td>
+                        <input type="time" class="text-center" ng-model="sat.end">
+                    </td>
+                    <td ng-class="{'done': sat.total !== '00:00'}">
+                        {{sat.total=difference(sat.start,sat.end);""}} {{sat.total}}
+                        <span ng-hide="sat.total === '00:00'" class="checkmark"><i class="fa fa-check" aria-hidden="true"></i></span>
+                    </td>
+                </tr>
+                <tr class="text-center">
+                    <td ng-class="{'done': sun.total !== '00:00'}">Sunday</td>
+                    <td>
+                        <input type="time" class="text-center" ng-model="sun.start">
+                    </td>
+                    <td>
+                        <input type="time" class="text-center" ng-model="sun.end">
+                    </td>
+                    <td ng-class="{'done': sun.total !== '00:00'}">
+                        {{sun.total=difference(sun.start,sun.end);""}} {{sun.total}}
+                        <span ng-hide="sun.total === '00:00'" class="checkmark"><i class="fa fa-check" aria-hidden="true"></i></span>
+                    </td>
+                </tr>
+
+            </table>
+
+            <hr>
+
+            <table class="table table-bordered text-center">
+
+                <tr class="success">
+                    <td colspan="2" class="text-center">Totals</td>
+                </tr>
+
+                <tr hidden>
+                    <td class="text-right">Employee Name:</td>
+                    <td class="col-sm-4">
+                        <div class="form-group">
+                            <label class="sr-only" for="employee-name">Name</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">Name:</div>
+                                <input type="text" class="form-control" id="employee-name" ng-model="employeeName" placeholder="John Doe">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right" style="vertical-align: middle;">Pay Rate:</td>
+                    <td class="col-sm-3">
+                        <div class="form-group" style="margin-bottom: 0px;">
+                            <label class="sr-only" for="employee-pay-rate">Pay Rate ($)</label>
+                            <div class="input-group" ng-class="{'has-error': !rateProvided}">
+                                <div class="input-group-addon">$</div>
+                                <input type="number" class="form-control" id="employee-pay-rate" ng-model="payRate" placeholder="10.5">
+                                <div class="input-group-addon">/ Hour</div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right">Total Hours:</td>
+                    <td>{{total()}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right" ng-hide="pay() === '0:00'">Salary:</td>
+                    <td>{{pay()}}</td>
+                </tr>
+
+            </table>
+
+            <div class="row" hidden>
+                <div class="col-md-4 col-md-offset-4">
+                    <button type="button" class="btn btn-primary btn-lg btn-block">
+                        Save
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Include JQuery as required by some Bootstrap and Angular modules -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Styling scripts, Bootstrap and FontAwesome -->
+    <script src="https://use.fontawesome.com/1342fd2a19.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- Include legacy Angular v1.2.22 due to Instagram API $http request bug -->
+    <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.22/angular.js"></script>-->
+    <script src="vendor/angular.js"></script>
+    <!-- Angular App Files and Directives -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/salary.js"></script>
+    <script src="scripts/services/data.js"></script>
+
+
+</body>
+
+</html>
